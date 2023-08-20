@@ -13,14 +13,25 @@ def create_database_table(connection):
             )
         ''')
 
+import sqlite3
+
 def add_definition(word, definition):
-    connection = sqlite3.connect('definitions.db')
-    cursor = connection.cursor()
-    
-    cursor.execute('INSERT INTO definitions (word, definition) VALUES (?, ?)', (word, definition))
-    
-    connection.commit()
-    connection.close()
+    try: 
+        connection = sqlite3.connect('definitions.db')
+        cursor = connection.cursor()
+        
+        cursor.execute('INSERT INTO definitions (word, definition) VALUES (?, ?)', (word, definition))
+        print("Success, added entry to database.")
+        connection.commit()
+    except sqlite3.OperationalError as e:
+        print(e)
+    except sqlite3.IntegrityError as e:
+        print(f"Entry with word '{word}' already exists in the database.")
+    finally:
+        connection.close()
+
+# Call the function
+add_definition("WORD", "Definition")
 
 def get_definition(connection, word):
     with connection:
