@@ -1,5 +1,12 @@
 import database as db
 
+def display_welcome_message():
+    motto = "Don't always be caught out of the loop."
+    dashes = len(motto) * '*'
+    print("Welcome to the Social Media Abbreviates Dictionary!")
+    print(f"{motto}\n{dashes}\n")
+    print(f"Enter 0 to quit, 1 to view list of all the definitions")
+
 def user_input_handler():
     user_input = str(input("Enter your command : ").upper())
     return user_input
@@ -20,13 +27,6 @@ def deabbreviate(user_input, connection):
         return word
     else:
         return f"Sorry, {user_input} does not exist in our database."
-
-def display_welcome_message():
-    motto = "Don't always be caught out of the loop."
-    dashes = len(motto) * '*'
-    print("Welcome to the Social Media Abbreviates Dictionary!")
-    print(f"{motto}\n{dashes}\n")
-    print(f"Enter 0 to quit, 1 to view list of all the definitions")
 
 def main():
     database = "definitions.db"
