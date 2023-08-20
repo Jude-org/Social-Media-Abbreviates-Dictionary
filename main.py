@@ -8,7 +8,7 @@ def deabbreviate(user_input, connection):
     if word:
         return word
     else:
-        return "Sorry, that abbreviation is not in our database."
+        return f"Sorry, {user_input} does not exist in our database."
 
 
 def display_welcome_message():
