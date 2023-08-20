@@ -6,13 +6,12 @@ def file_manager():
     with open("definitions.txt", 'r') as file:
         for line in file:
             entries += 1
-            separated = line.split("-")
+            separated = line.strip().split("-")
             definitions[f"entry{entries}"] = separated
     return definitions
 
 def add_to_database(definitions):
-    for entry in definitions.items():
-        word, definition = entry[1][0], entry[1][1]
+    for entry, (word, definition) in definitions.items():
         db.add_definition(word, definition)
     
         
