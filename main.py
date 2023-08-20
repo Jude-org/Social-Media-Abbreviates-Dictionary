@@ -1,5 +1,13 @@
 import sqlite3
-from database import create_database_table, get_definition
+from database import create_database_table, get_definition, list_definitions
+
+def display_list(connection):
+    results = list_definitions(connection)
+    if results:
+        for word, definition in results:
+            print(f"{word} : {definition}")
+    else:
+        print("No results found.")
 
 def deabbreviate(user_input, connection):
     uppercase_input = user_input.upper()
@@ -16,6 +24,7 @@ def display_welcome_message():
     dashes = len(motto) * '*'
     print("Welcome to the Social Media Abbreviates Dictionary!")
     print(f"{motto}\n{dashes}\n")
+    print(f"Enter 0 to quit, 1 to view list of all the definitions")
 
 
 def main():
@@ -24,14 +33,17 @@ def main():
     display_welcome_message()
 
     while True:
-        user_input = input("Enter your abbreviation (or 'EXIT' to quit): ").upper()
+        user_input = input("Enter your command : ").upper()
         
-        if user_input == "EXIT":
+        if user_input == "0":
             print("Thank you for using the SMAD. Goodbye!")
             break
-        
-        result = deabbreviate(user_input, connection)
-        print(result)
+        elif user_input == "1":
+            display_list(connection)
+        else:
+            result = deabbreviate(user_input, connection)
+            print(result)
+            
     connection.close()
     
 if __name__ == "__main__":

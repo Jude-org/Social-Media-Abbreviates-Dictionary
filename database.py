@@ -27,5 +27,12 @@ def get_definition(connection, word):
     cursor = connection.cursor()
     cursor.execute(''' SELECT definition FROM definitions WHERE word = ?''', (word,))
     results = cursor.fetchone()
+    
     return results[0] if results else None
 
+def list_definitions(connection):
+    cursor = connection.cursor()
+    cursor.execute('''SELECT word, definition FROM definitions;''')
+    results = cursor.fetchall()
+    
+    return results if results else None
