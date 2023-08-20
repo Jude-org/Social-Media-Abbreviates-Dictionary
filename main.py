@@ -1,8 +1,8 @@
 import sqlite3
-from database import create_database_table, get_definition, list_definitions
+import database as db
 
 def display_list(connection):
-    results = list_definitions(connection)
+    results = db.get_definitions(connection)
     if results:
         for word, definition in results:
             print(f"{word} : {definition}")
@@ -11,7 +11,7 @@ def display_list(connection):
 
 def deabbreviate(user_input, connection):
     uppercase_input = user_input.upper()
-    word = get_definition(connection, uppercase_input)
+    word = db.get_definition(connection, uppercase_input)
     
     if word:
         return word
@@ -28,8 +28,9 @@ def display_welcome_message():
 
 
 def main():
-    connection = sqlite3.connect('definitions.db')
-    create_database_table(connection)
+    database = "definitions.db"
+    connection = sqlite3.connect(database)
+    db.create_database_table(connection)
     display_welcome_message()
 
     while True:
