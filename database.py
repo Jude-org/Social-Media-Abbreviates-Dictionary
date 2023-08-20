@@ -31,8 +31,9 @@ def get_definition(connection, word):
     return results[0] if results else None
 
 def get_definitions(connection):
-    cursor = connection.cursor()
-    cursor.execute('''SELECT word, definition FROM definitions;''')
-    results = cursor.fetchall()
+    with connection:
+        cursor = connection.cursor()
+        cursor.execute('''SELECT word, definition FROM definitions;''')
+        results = cursor.fetchall()
     
     return results if results else None
