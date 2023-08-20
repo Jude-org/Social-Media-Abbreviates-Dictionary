@@ -1,5 +1,5 @@
 import sqlite3
-from database import create_database_table, add_definition, get_definition
+from database import create_database_table, get_definition
 
 def deabbreviate(user_input, connection):
     uppercase_input = user_input.upper()
@@ -14,7 +14,7 @@ def deabbreviate(user_input, connection):
 def display_welcome_message():
     motto = "Don't always be caught out of the loop."
     dashes = len(motto) * '*'
-    print("Welcome to Social Media Abbreviate Deabbreviator!")
+    print("Welcome to the Social Media Abbreviates Dictionary!")
     print(f"{motto}\n{dashes}\n")
 
 
@@ -27,7 +27,7 @@ def main():
         user_input = input("Enter your abbreviation (or 'EXIT' to quit): ").upper()
         
         if user_input == "EXIT":
-            print("Thank you for using the Abbreviate Deabbreviator. Goodbye!")
+            print("Thank you for using the SMAD. Goodbye!")
             break
         
         result = deabbreviate(user_input, connection)
