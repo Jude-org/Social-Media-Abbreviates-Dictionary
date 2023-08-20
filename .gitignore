@@ -3,3 +3,4 @@ venv/
 definitions.sqbpro
 definitions.db-journal
 __pycache__/
+definitions.txt

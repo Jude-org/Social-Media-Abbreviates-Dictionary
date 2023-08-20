@@ -30,8 +30,6 @@ def add_definition(word, definition):
     finally:
         connection.close()
 
-# Call the function
-add_definition("WORD", "Definition")
 
 def get_definition(connection, word):
     with connection:
