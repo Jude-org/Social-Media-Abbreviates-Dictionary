@@ -46,3 +46,15 @@ def get_definitions(connection):
         results = cursor.fetchall()
     
     return results if results else None
+
+def delete_table(connection, table_name):
+    try:
+        with connection:
+            cursor = connection.cursor()
+            cursor.execute(f"DROP TABLE IF EXISTS {table_name}")
+            cursor.commit()
+        print(f"Table {table_name} deleted successfully")
+    except sqlite3.Error as e:
+        print(e)
+    
+        
